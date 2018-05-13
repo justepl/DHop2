@@ -51,6 +51,8 @@
         </nav>
 
         <?php
+            //echo($_POST['nom']);
+        
             require 'db.php'; // inclu le fichier de co à la bdd
             if (isset($_POST['pseudo']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['sexe']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['password2'])) { 
                   
@@ -66,19 +68,19 @@
                 if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email)) { /* verification si l'email est bien un email*/
                     
                    if ($password == $passwordConfirm) { /* verification si les mdp et la confirmation sont egals*/
-                        $req = $db->query("SELECT pseudo FROM membre WHERE pseudo = '$pseudo'");
+                       $req = $db->query("SELECT pseudo FROM membre WHERE pseudo = '$pseudo'");
                         $count = $req->rowCount(); /* on verifie que le pseudo n'est pas deja utilisé*/
                         
                        if ($count == 0) {
-                            $req = $db->prepare("INSERT INTO 'membre'('pseudo', 'nom', 'prenom', 'mail', 'password', 'sexe') VALUES(:pseudo, :nom, :prenom, :email, :password, :sexe)");
-                            $req->execute(array(
+                            $req = $db->exec("INSERT INTO 'membre'('pseudo', 'nom', 'prenom', 'mail', 'password', 'sexe') VALUES('pseudo', 'nom', 'prenom', 'email', 'password', 'sexe')");
+                            /*$req->execute(array(
                                 'pseudo' => $pseudo,
                                 'nom' => $nom,
                                 'prenom' => $prenom,
                                 'mail' => $email,
                                 'password' => $password,
                                 'sexe' => $sexe
-                            ));
+                            ));*/
                             header('Location: inscription.php');
                         } else {
                             $message = 'Cette adresse mail est d"ja utilisée.';
@@ -95,7 +97,7 @@
             ?>
 
         <div class="container" id="divForm">
-            <form method="post" action="" id="formInscription">
+            <form method="post" action="inscription.php" id="formInscription">
                 <div class="form-group col-md-4">
                     <label for="pseudo">Pseudo :</label>
                     <input class="form-control" type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" autofocus>

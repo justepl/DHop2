@@ -4,4 +4,9 @@
 #divForm {
   padding-top: 50px; }
 
+#blockAnnonce {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 50px;
+  margin-top: 25px; }
+
 /*# sourceMappingURL=style.css.map */

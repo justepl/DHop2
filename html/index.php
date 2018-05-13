@@ -21,11 +21,7 @@
         require 'db.php';
         
         $membres = $bd->query('SELECT * FROM membre');
-        
-        while ($donnee = $membres->fetch()) {
-            echo $donnee['nom'];
-        }
-        
+        $annonces = $bd->query('SELECT * FROM annonce');
       ?>
        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
             <a class="navbar-brand" href="">DHop</a>
@@ -89,6 +85,23 @@
               </div>
             </div>
           </div>
+        </div>
+        
+        <div class="container" id="corpSite">
+            <?php
+                while ($donnees = $annonces->fetch())
+                {
+                        ?>
+            <div class="row" id="blockAnnonce">
+                   <?php
+                        echo $donnees['nom_annonce'] . '<br />';
+                        echo $donnees['marque_velo'] . '<br/>';
+                        echo $donnees['model_velo'] . '<br />';
+                    ?>
+            </div>
+            <?php     
+                    }
+            ?>
         </div>
     </body>       
 </html>
