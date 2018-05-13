@@ -33,14 +33,14 @@
         $annonces = $bd->query('SELECT * FROM annonce');
       ?>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <a class="navbar-brand" href="index.php">DHop</a>
+        <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+            <a class="navbar-brand" href="index.php" id="logo">DHop</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" id="list_menu_gch">
                     <li class="nav-item active">
                         <a class="nav-link" href="index.php">Acceuil</a>
                     </li>
@@ -55,7 +55,7 @@
                     </li>
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto" id="list_menu_dte">
                         <li class="nav-item">
                             <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
                         </li>
@@ -68,18 +68,24 @@
         </nav>
 
         <div class="container" id="corpSite">
+            <h1 id="titreAnnonce">Les Annonce de DH : </h1>
             <?php
                 while ($donnees = $annonces->fetch())
                 {
                         ?>
-                <div class="row" id="blockAnnonce">
-                    <?php
-                        echo $donnees['nom_annonce'] . '<br />';
-                        echo $donnees['marque_velo'] . '<br/>';
-                        echo $donnees['model_velo'] . '<br />';
-                    ?>
-                </div>
-                <?php     
+                
+                <a href="annonces.php" id="lienAnnonce">
+                    <div class="row" id="blockAnnonce">
+                    <!--<div class="row" id="blockAnnonce">-->
+                        <div class="col-lg-3"><?php echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" id="imgVelo">'; ?></div>
+                        <aside>
+                            <p id="nom_annonce"><?php echo $donnees['nom_annonce']; ?></p>
+                            <p id="marque_velo">Marque : <?php echo $donnees['marque_velo']; ?></p>
+                            <p id="model_velo">Model : <?php echo $donnees['model_velo']; ?></p>
+                        </aside>
+                    </div>
+                </a>
+                <?php
                     }
             ?>
         </div>

@@ -97,6 +97,23 @@
                 </div>
             </div>
         </div>
+
+
+        <form method="post" action="ajoutAnnonce.php" enctype="multipart/form-data">
+            <label for="nomAnnonce">Nom de l'annonce : </label>
+            <input type="text" name="nomAnnonce" id="nomAnnonce">
+            <p>
+                formulaire d'envoi de fichier : <br>
+                <input type="file" name="imageVelo" id="imageVelo"><br>
+            </p>
+            <label for="marqueVelo">Marque du velo : </label>
+            <input type="text" name="marqueVelo" id="marqueVelo">
+            <label for="modelVelo">Model du velo : </label>
+            <input type="text" name="modelVelo" id="modelVelo">
+            <label for="description">Decription du velo : </label>
+            <input type="text" name="description" id="description">  
+            <input type="submit">
+        </form>
 </body>
 
 </html>

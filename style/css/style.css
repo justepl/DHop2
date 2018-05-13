@@ -1,5 +1,38 @@
 nav {
+  background-color: #109AF5;
   font-family: 'Skranji', cursive; }
+  nav #logo {
+    font-size: 30px; }
+  nav #logo:hover {
+    color: #F45A2B; }
+  nav #list_menu_gch {
+    padding-left: 20px; }
+    nav #list_menu_gch a:hover {
+      color: #F45A2B; }
+  nav #list_menu_dte a:hover {
+    color: #F45A2B; }
+
+#modal_header {
+  background-color: #109AF5; }
+
+#titreAnnonce {
+  margin-bottom: 20px; }
+
+#lienAnnonce {
+  text-decoration: none; }
+
+#blockAnnonce:hover {
+  background-color: rgba(255, 99, 59, 0.2); }
+
+aside {
+  margin-left: 20%; }
+  aside #nom_annonce {
+    color: #F45A2B;
+    font-size: 30px; }
+  aside #marque_velo {
+    color: #647B96; }
+  aside #model_velo {
+    color: #647B96; }
 
 #divForm {
   padding-top: 50px; }
@@ -8,11 +41,15 @@ nav {
   margin-top: 10px; }
 
 #blockAnnonce {
-  background-color: rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
   padding-top: 10px;
   padding-bottom: 10px;
-  text-align: center; }
+  padding-left: 20px; }
+
+#imgVelo {
+  display: block;
+  width: 100%;
+  height: auto; }
 
 /*# sourceMappingURL=style.css.map */
