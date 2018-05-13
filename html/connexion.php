@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CDN
       BOOTSTRAP -->
@@ -14,37 +15,90 @@
       BOOTSTRAP JAVASCRIPT-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+
     <title>DHop</title>
-    </head>
+
+    <?php
+        // includes :
+     include 'modal.php';
     
-    <body>
-      <?php
-        try
-        {
-            $bdd = new PDO('mysql:host=localhost;dbname=dhop;charset=utf8', 'root', '');
-        }
-        catch(Exception $e)
-        {
-                die('Erreur : '.$e->getMessage());
-        }
+    ?>
+</head>
+
+<body>
+    <?php
+        require 'db.php';
         
-        $reponse = $bdd->query('SELECT * FROM membre');
-        
-        if (isset($_POST['password']) AND $_POST['password'] ==  "kangourou") // Si le mot de passe est bon
+        $membres = $bd->query('SELECT * FROM membre');
+        $annonces = $bd->query('SELECT * FROM annonce');
+      ?>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand" href="index.php">DHop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        {
-        }
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Acceuil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="annonces.php">Annonces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="favoris.php">Favoris</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="deposeAnnonce.php">Deposer une annonce</a>
+                    </li>
+                </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="panier.php" class="nav-link my-2 my-sm-0">Pannier</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        else // Sinon, on affiche un message d'erreur
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Connexion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="connexion.php">
+                            <div class="form-group">
+                                <label for="identifiant">Identifiant :</label>
+                                <input class="form-control" type="text" name="identifiant" id="identifiant" placeholder="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mot de passe :</label>
+                                <input class="form-control" type="password" id="password" name="password" placeholder="password">
+                                <br>
+                                <input type="submit" name="submit" value="Connexion">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <a type="button" class="btn btn-primary" href="inscription.php">S'inscrire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
 
-        {
-
-            echo '<p>Mot de passe incorrect</p>';
-
-        }
-
-        header('Location: index.php');
-
-        ?>
-    </body>
 </html>

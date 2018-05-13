@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CDN
       BOOTSTRAP -->
@@ -13,42 +14,89 @@
       BOOTSTRAP JAVASCRIPT-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+
     <title>DHop</title>
-    </head>
+
+    <?php
+        // includes :
+     include 'modal.php';
     
-    <body>
-       <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <a class="navbar-brand" href="#">DHop</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+    ?>
+</head>
+
+<body>
+    <?php
+        require 'db.php';
+        
+        $membres = $bd->query('SELECT * FROM membre');
+        $annonces = $bd->query('SELECT * FROM annonce');
+      ?>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand" href="index.php">DHop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Acceuil <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Acceuil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
+                        <a class="nav-link" href="annonces.php">Annonces</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="favoris.php">Favoris</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="deposeAnnonce.php">Deposer une annonce</a>
                     </li>
                 </ul>
-            </div>
-            <div>
-                <ul class="navbar-nav"  id="menu_droite">
-                    <li class="navbar-nav">
-                        <a class="nav-link" href="connexion.php" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
-                    </li>
-                    <li class="navbar-nav">
-                        <a class="nav-link" href="panier.php">Panier</a>
-                    </li>
-                </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="panier.php" class="nav-link my-2 my-sm-0">Pannier</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Connexion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="connexion.php">
+                            <div class="form-group">
+                                <label for="identifiant">Identifiant :</label>
+                                <input class="form-control" type="text" name="identifiant" id="identifiant" placeholder="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mot de passe :</label>
+                                <input class="form-control" type="password" id="password" name="password" placeholder="password">
+                                <br>
+                                <input type="submit" name="submit" value="Connexion">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <a type="button" class="btn btn-primary" href="inscription.php">S'inscrire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <?php
             //echo($_POST['nom']);
@@ -96,42 +144,43 @@
             }
             ?>
 
-        <div class="container" id="divForm">
-            <form method="post" action="inscription.php" id="formInscription">
-                <div class="form-group col-md-4">
-                    <label for="pseudo">Pseudo :</label>
-                    <input class="form-control" type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" autofocus>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="nom">Nom :</label>
-                    <input class="form-control" type="text" name="nom" id="nom" placeholder="Votre Nom" >
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="prenom">Prenom :</label>
-                    <input class="form-control" type="text" id="prenom" name="prenom" placeholder="Votre Prenom">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="sexe">Sexe</label>
-                    <select id="sexe" class="form-control">
+            <div class="container" id="divForm">
+                <form method="post" action="inscription.php" id="formInscription">
+                    <div class="form-group col-md-4">
+                        <label for="pseudo">Pseudo :</label>
+                        <input class="form-control" type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" autofocus>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="nom">Nom :</label>
+                        <input class="form-control" type="text" name="nom" id="nom" placeholder="Votre Nom">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="prenom">Prenom :</label>
+                        <input class="form-control" type="text" id="prenom" name="prenom" placeholder="Votre Prenom">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="sexe">Sexe</label>
+                        <select id="sexe" class="form-control">
                         <option selected>sexe...</option>
                         <option>Homme</option>
                         <option>Femme</option>
                     </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="email">Adresse mail :</label>
-                    <input class="form-control" type="text" id="email" name="email" placeholder="votre adresse mail">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="password1">Mot de passe :</label>
-                    <input class="form-control" type="text" id="passsword1" name="password1" placeholder="votre Mot de passe">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="password2">Confirmation du mot de passe</label>
-                    <input class="form-control" type="text" id="password2" name="password2" placeholder="confirmation mot de passe">
-                </div>
-                <input class="btn btn-primary" type="submit" name="submit" value="S'inscrire">            
-            </form>
-        </div>
-    </body>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="email">Adresse mail :</label>
+                        <input class="form-control" type="text" id="email" name="email" placeholder="votre adresse mail">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="password1">Mot de passe :</label>
+                        <input class="form-control" type="text" id="passsword1" name="password1" placeholder="votre Mot de passe">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="password2">Confirmation du mot de passe</label>
+                        <input class="form-control" type="text" id="password2" name="password2" placeholder="confirmation mot de passe">
+                    </div>
+                    <input class="btn btn-primary" type="submit" name="submit" value="S'inscrire">
+                </form>
+            </div>
+</body>
+
 </html>

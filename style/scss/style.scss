@@ -1,15 +1,20 @@
-
-#merde {
-    font-size: 500px;
+nav {
+    font-family: 'Skranji', cursive;
 }
 
 #divForm {
     padding-top: 50px;
 }
 
+#corpSite {
+    margin-top: 10px;
+}
 
 #blockAnnonce {
-    background-color: rgba(0,0,0,0.5);
-    margin-bottom: 50px;
-    margin-top: 25px;
+    background-color: rgba(0,0,0,0.2);
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
 }
