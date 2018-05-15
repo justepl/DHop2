@@ -36,3 +36,18 @@
         <input type="submit">
     </form>
 </html>
+
+
+
+
+<?php echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" id="imgVelo"/>'; ?>
+                        <span id="nom_annonce">
+                            <?php echo $donnees['nom_annonce']; ?>
+                            <br/>
+                        </span>
+                        <span id="marque_velo">
+                            <?php echo $donnees['marque_velo']; ?>
+                        </span>
+                        <span id="model_Velo">
+                            <?php echo $donnees['model_velo']; ?>
+                        </span>

@@ -10,6 +10,7 @@
     <!-- CDN
       JQUERRY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/script.js"></script>
     <!-- CDN
       BOOTSTRAP JAVASCRIPT-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -98,22 +99,34 @@
             </div>
         </div>
 
+        <div class="container">
+            <form method="post" action="ajoutAnnonce.php" enctype="multipart/form-data">
+                <div class="form-group col-md-6">
+                    <label for="nomAnnonce">Nom de l'annonce </label>
+                    <input class="form-control" type="text" name="nomAnnonce" id="nomAnnonce">
+                </div>
 
-        <form method="post" action="ajoutAnnonce.php" enctype="multipart/form-data">
-            <label for="nomAnnonce">Nom de l'annonce : </label>
-            <input type="text" name="nomAnnonce" id="nomAnnonce">
-            <p>
-                formulaire d'envoi de fichier : <br>
-                <input type="file" name="imageVelo" id="imageVelo"><br>
-            </p>
-            <label for="marqueVelo">Marque du velo : </label>
-            <input type="text" name="marqueVelo" id="marqueVelo">
-            <label for="modelVelo">Model du velo : </label>
-            <input type="text" name="modelVelo" id="modelVelo">
-            <label for="description">Decription du velo : </label>
-            <input type="text" name="description" id="description">  
-            <input type="submit">
-        </form>
+                <div class="form-group  col-md-6">
+                    <label for="imageVelo" class="">Choisissez une image pour votre annonce</label> <br>
+                    <input type="file" class=" btn" name="imageVelo" id="imageVelo"><br>    
+                </div>
+                <div class="form-group  col-md-6">
+                    <label for="marqueVelo">Marque du velo </label>
+                    <input class="form-control" type="text" name="marqueVelo" id="marqueVelo">
+                </div>
+                <div class="form-group  col-md-6">
+                    <label for="modelVelo">Model du velo </label>
+                    <input class="form-control" type="text" name="modelVelo" id="modelVelo">
+                </div>
+                <div class="form-group  col-md-6">
+                    <label for="description">Decription du velo </label>
+                    <textarea class="form-control" type="text" name="description" id="description" rows="3"></textarea>
+                </div>
+                <div class="form-group  col-md-6">
+                    <input type="submit" class="btn btn-primary" id="submit">
+                </div>
+            </form>
+        </div>
 </body>
 
 </html>

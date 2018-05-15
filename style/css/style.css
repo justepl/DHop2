@@ -10,7 +10,7 @@ nav {
     nav #list_menu_gch a:hover {
       color: #F45A2B; }
   nav #list_menu_dte a:hover {
-    color: #F45A2B; }
+    color: #109AF5; }
 
 #modal_header {
   background-color: #109AF5; }
@@ -27,7 +27,7 @@ nav {
 aside {
   margin-left: 20%; }
   aside #nom_annonce {
-    color: #F45A2B;
+    color: #109AF5;
     font-size: 30px; }
   aside #marque_velo {
     color: #647B96; }
@@ -38,7 +38,7 @@ aside {
   padding-top: 50px; }
 
 #corpSite {
-  margin-top: 10px; }
+  margin-top: 70px; }
 
 #blockAnnonce {
   border-bottom: 1px solid gray;

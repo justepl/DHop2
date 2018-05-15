@@ -27,7 +27,7 @@
         
     if(isset($_FILES['imageVelo']) AND $_FILES['imageVelo']['error'] == 0)
     {
-        echo("coucou");
+        echo 'ok';
         $infofichier = pathinfo($_FILES['imageVelo']['name']);
         $extension_upload = strtolower( substr( strrchr($_FILES['imageVelo']['name'], '.') ,1));
         $extension_autorises = array('jpg', 'jpeg', 'gif', 'png');
@@ -40,7 +40,7 @@
         }
     }
     else {
-        echo("kk");
+        echo 'pas ok';
     }
     
     $adresseImage = "$upload_dir/$nom.$extension_upload";

@@ -27,7 +27,7 @@ nav {
 
     #list_menu_dte {
         a:hover {
-            color: $orange;
+            color: $bleuFlash;
         }
     }
 }
@@ -56,7 +56,7 @@ aside{
     margin-left: 20%;
     
     #nom_annonce {
-        color: $orange;
+        color: $bleuFlash;
         font-size: 30px;
     }
     
@@ -68,13 +68,20 @@ aside{
         color: $grisClair;
     }
 }
+
+
+// deposer annonce :
+#submit {
+    
+}
+
 //reste
 #divForm {
     padding-top: 50px;
 }
 
 #corpSite {
-    margin-top: 10px;
+    margin-top: 70px;
 }
 
 #blockAnnonce {
@@ -89,4 +96,12 @@ aside{
     display: block;
     width: 100%;
     height: auto;
+}
+
+
+
+#imageVelo {
+}
+
+#btnFichier {
 }
