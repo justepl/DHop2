@@ -100,27 +100,27 @@
         <div class="container" id="container_form_ajoutAnnonce">
             <form method="post" action="ajoutAnnonce.php" enctype="multipart/form-data">
                 <label for="nomAnnonce">Nom de l'annonce </label>
-                <div class="input-group col-md-6">                    
+                <div class="input-group col-md-4">                    
                     <input class="form-control" type="text" name="nomAnnonce" id="nomAnnonce" placeholder="nom de l'annonce">
                 </div>
                 
                  <label for="imageVelo" class="">Choisissez une image pour votre annonce</label> <br>
-                <div class="input-group  col-md-6">
+                <div class="input-group  col-md-4">
                     <input type="file" name="imageVelo" id="imageVelo"><br>
                 </div>
                 
                 <label for="marqueVelo">Marque du velo </label>
-                <div class="input-group  col-md-6">                    
+                <div class="input-group  col-md-4">                    
                     <input class="form-control" type="text" name="marqueVelo" id="marqueVelo" placeholder="marque du velo">
                 </div>
                 
                 <label for="modelVelo">Model du velo </label>
-                <div class="input-group  col-md-6">                    
+                <div class="input-group  col-md-4">                    
                     <input class="form-control" type="text" name="modelVelo" id="modelVelo" placeholder="marque du velo">
                 </div>
                 
                 <label for="prix">Prix du velo </label>
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-4">
                     <input class="form-control" type="text" name="prix" id="prix" aria-label="Amount (to the nearest dollar)" placeholder="prix">
                     <div class="input-group-append">
                         <span class="input-group-text">€</span>
