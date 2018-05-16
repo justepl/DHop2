@@ -87,10 +87,10 @@
                         </div>
                         <div class="form-group">
                             <label for="sexe">Sexe</label>
-                            <select id="sexe" class="form-control">
+                            <select id="sexe" name="sexe" class="form-control">
                         <option selected>sexe...</option>
-                        <option>Homme</option>
-                        <option>Femme</option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
                     </select>
                         </div>
                         <div class="form-group">

@@ -49,7 +49,7 @@
         'imageVelo' => $adresseImage
     ));
 
-    //header('Location: index.php');
+    header('Location: index.php');
     ?>
     
 </html>

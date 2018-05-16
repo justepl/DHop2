@@ -16,25 +16,35 @@
             require 'db.php'; // inclu le fichier de co à la bd
                   
                   //securitée :
-                $pseudo = $_POST['pseudo'];
-                $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
-                //$sexe = $_POST['sexe'];
-                $email = $_POST['email'];
+        if(isset($_POST['pseudo']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['sexe']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['password2'])) {
+            $pseudo = addslashes(htmlspecialchars(htmlentities(trim($_POST['pseudo']))));
+            $nom = addslashes(htmlspecialchars(htmlentities(trim($_POST['nom']))));
+            $prenom = addslashes(htmlspecialchars(htmlentities(trim($_POST['prenom']))));
+            $sexe = $_POST['sexe'];
+            $email = addslashes(htmlspecialchars(htmlentities(trim($_POST['email']))));
+            $password = sha1($_POST['password1']);
+            $password_confirm = sha1($_POST['password2']);
+            
+            if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$email)) { // verif du format de l'adresse mail 
                 
-                if($_POST['password1'] == $_POST['password2']) {
-                    $password = $_POST['password1'];
-                }
-                
-                
-                 $req = $bdd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, ) VALUES(:pseudo, :nom, :prenom, :mail, :password)');
+                $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe)');
                 $req->execute(array(
                 'pseudo' => $pseudo,
                 'nom' => $nom,
                 'prenom' => $prenom,
                 'mail' => $email,
-                'password' => $password
-                //'sexe' => $sexe
-    ));
+                'password' => $password,
+                'sexe' => $sexe
+                    ));
+        } else {
+                echo "blop 1";
+            }
+        } else {
+            echo "blop 2";
+        }
+    
+    
+    
+   //header('Location: index.php');
             ?>
 </html>
