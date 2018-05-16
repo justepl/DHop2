@@ -25,7 +25,9 @@
             $password = sha1($_POST['password1']);
             $password_confirm = sha1($_POST['password2']);
             
-            if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$email)) { // verif du format de l'adresse mail 
+            if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$email)) {// verif du format de l'adresse mail 
+                
+                if($password == $password_confirm) { // verifi que les deux mdp sont identiques
                 
                 $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe)');
                 $req->execute(array(
@@ -36,11 +38,14 @@
                 'password' => $password,
                 'sexe' => $sexe
                     ));
+                } else {
+                    echo "vos deux mots de passes ne correspondent pas";
+                    }
+            } else {
+                echo "mauvaise adresse mail";
+                }
         } else {
-                echo "blop 1";
-            }
-        } else {
-            echo "blop 2";
+            echo "veuillez completer tous les champs";
         }
     
     
