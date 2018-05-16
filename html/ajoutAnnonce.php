@@ -10,12 +10,7 @@
     
 </body>
     <?php
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=DHop;charset=utf8', 'root', '');
-    }
-    catch (Exeption $e) {
-        die('Erreur : '.$e->getMessage());
-    }
+    require 'db.php';
     
     $nomAnnonce = $_POST['nomAnnonce'];
     $marqueVelo = $_POST['marqueVelo'];
@@ -45,7 +40,7 @@
     
     $adresseImage = "$upload_dir/$nom.$extension_upload";
     
-    $req = $bdd->prepare('INSERT INTO annonce(nom_annonce, marque_velo, model_velo, description, imageVelo) VALUES(:nom_annonce, :marque_velo, :model_velo, :description, :imageVelo)');
+    $req = $bd->prepare('INSERT INTO annonce(nom_annonce, marque_velo, model_velo, description, imageVelo) VALUES(:nom_annonce, :marque_velo, :model_velo, :description, :imageVelo)');
     $req->execute(array(
         'nom_annonce' => $nomAnnonce,
         'marque_velo' => $marqueVelo,

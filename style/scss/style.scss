@@ -27,7 +27,7 @@ nav {
 
     #list_menu_dte {
         a:hover {
-            color: $bleuFlash;
+            color: $orange;
         }
     }
 }
@@ -104,4 +104,8 @@ aside{
 }
 
 #btnFichier {
+}
+
+#container_form_ajoutAnnonce {
+    padding-top: 100px;
 }
