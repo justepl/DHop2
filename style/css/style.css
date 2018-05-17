@@ -1,9 +1,6 @@
 body::-webkit-scrollbar {
   display: none; }
 
-@media screen and (max-width: 640px) {
-  #img_div_form_inscription {
-    display: none; } }
 nav {
   background-color: #109AF5;
   font-family: 'Skranji', cursive; }
@@ -41,8 +38,7 @@ aside {
     color: #647B96; }
 
 #divForm {
-  padding-top: 80px;
-  margin-left: 20px; }
+  margin-left: 0; }
 
 #corpSite {
   margin-top: 70px; }
@@ -70,11 +66,17 @@ aside {
   float: right; }
 
 #img_inscription {
-  float: right;
-  padding: 0;
-  margin: 0; }
+  float: right; }
 
 #inscription {
   overflow-x: hidden; }
+
+#error_message {
+  float: left;
+  margin-top: 90px;
+  text-align: center; }
+
+#img_form_inscription {
+  margin-left: 20px; }
 
 /*# sourceMappingURL=style.css.map */

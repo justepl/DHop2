@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    
+
 </body>
 
 <?php
@@ -29,15 +29,23 @@
                 
                 if($password == $password_confirm) { // verifi que les deux mdp sont identiques
                 
-                $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe)');
-                $req->execute(array(
-                'pseudo' => $pseudo,
-                'nom' => $nom,
-                'prenom' => $prenom,
-                'mail' => $email,
-                'password' => $password,
-                'sexe' => $sexe
-                    ));
+                    $req = $bd->query("SELECT pseudo FROM membre WHERE pseudo = '$pseudo'");
+                    $count = $req->rowCount(); // verifie que le pseudo est disponnible
+                    if($count == 0) {
+                        
+                        $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe)');
+                        $req->execute(array(
+                        'pseudo' => $pseudo,
+                        'nom' => $nom,
+                        'prenom' => $prenom,
+                        'mail' => $email,
+                        'password' => $password,
+                        'sexe' => $sexe
+                        ));                        
+                    } else{
+                        echo "ce pseudo est déjà utilisé";
+                    }                    
+                
                 } else {
                     echo "vos deux mots de passes ne correspondent pas";
                     }
@@ -52,4 +60,5 @@
     
    //header('Location: index.php');
             ?>
+
 </html>

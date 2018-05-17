@@ -1,3 +1,8 @@
+<?php
+    session_start();
+?>
+
+
 <!DOCTYPE html>
 
 <html>
@@ -69,6 +74,10 @@
             </div>
         </nav>
 
+        <?php
+            $req = $bd->prepare('SELECT id, ')
+        ?>
+    
         <?php 
             include 'modal.php';
     ?>

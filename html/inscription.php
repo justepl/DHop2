@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +40,7 @@
         $membres = $bd->query('SELECT * FROM membre');
         $annonces = $bd->query('SELECT * FROM annonce');
       ?>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="navbar">
+           <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="navbar">
                 <a class="navbar-brand" href="index.php" id="logo">DHop</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -69,10 +73,63 @@
                     </div>
                 </div>
             </nav>
+        
+        <?php
+            //echo($_POST['nom']);
+        
+            require 'db.php'; // inclu le fichier de co à la bd
+                  
+                  //securitée :
+            if(isset($_POST['pseudo']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['sexe']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['password2'])) {
+                $pseudo = addslashes(htmlspecialchars(htmlentities(trim($_POST['pseudo']))));
+                $nom = addslashes(htmlspecialchars(htmlentities(trim($_POST['nom']))));
+                $prenom = addslashes(htmlspecialchars(htmlentities(trim($_POST['prenom']))));
+                $sexe = $_POST['sexe'];
+                $email = addslashes(htmlspecialchars(htmlentities(trim($_POST['email']))));
+                $password = sha1($_POST['password1']);
+                $password_confirm = sha1($_POST['password2']);
 
-            <div class="row container-fluid" id="divForm">
-                <div class="col-md-6">
-                    <form method="post" action="ajoutMembre.php" id="formInscription">
+                if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$email)) {// verif du format de l'adresse mail 
+
+                    if($password == $password_confirm) { // verifi que les deux mdp sont identiques
+
+                        $req = $bd->query("SELECT pseudo FROM membre WHERE pseudo = '$pseudo'");
+                        $count = $req->rowCount(); // verifie que le pseudo est disponnible
+                        if($count == 0) {
+
+                            $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe)');
+                            $req->execute(array(
+                            'pseudo' => $pseudo,
+                            'nom' => $nom,
+                            'prenom' => $prenom,
+                            'mail' => $email,
+                            'password' => $password,
+                            'sexe' => $sexe
+                            ));  
+                        } else{
+                            $message = "ce pseudo est déjà utilisé";
+                        }                    
+
+                    } else {
+                        $message = "vos deux mots de passes ne correspondent pas";
+                        }
+                } else {
+                    $message = "mauvaise adresse mail";
+                    }
+            } else {
+                $message = "veuillez completer tous les champs";
+            }
+
+       //header('Location: index.php');
+            ?>
+            <div class="alert alert-danger col-md-6" id="error_message">
+                <?= $message; ?>
+            </div>
+        
+        
+            <div class="row container-fluid" id="img_form_inscription">
+                <div class="col-md-6" id="divForm">
+                    <form method="post" action="" id="formInscription">
                         <div class="form-group">
                             <label for="pseudo">Pseudo :</label>
                             <input class="form-control" type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" autofocus>
@@ -109,7 +166,7 @@
                     </form>
                 </div>
                 <div class="container-fluid col-md-6" id="img_div_form_inscription">
-                    <img src="../img/inscription_img1.jpg" class="img-fluid">
+                    <img src="../img/inscription_img1.jpg" class="img-fluid" id="img_inscription">
                 </div>
             </div>
     </div>

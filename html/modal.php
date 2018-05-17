@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -8,7 +12,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="connexion.php">
+                <form method="post" action="connexion_post.php">
                     <div class="form-group">
                         <label for="identifiant">Identifiant :</label>
                         <input class="form-control" type="text" name="identifiant" id="identifiant" placeholder="email" autofocus>
