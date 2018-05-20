@@ -12,6 +12,7 @@
         if ($resultat->rowCount() == 1) {
             $_SESSION['login'] = $login;
             $_SESSION['mdp'] = $mdp;
+            
 
             // var qui indique que l'authentifiaction est reussi :
             $_SESSION['authOK'] = true;

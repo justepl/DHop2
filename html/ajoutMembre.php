@@ -31,8 +31,7 @@
                 
                     $req = $bd->query("SELECT pseudo FROM membre WHERE pseudo = '$pseudo'");
                     $count = $req->rowCount(); // verifie que le pseudo est disponnible
-                    if($count == 0) {
-                        
+                    if($count == 0) {                        
                         $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe)');
                         $req->execute(array(
                         'pseudo' => $pseudo,

@@ -1,7 +1,12 @@
 <?php
     session_start();
-?>
 
+    if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
+    } else {
+        $_SESSION['login'] = '';
+        $_SESSION['authOK'] = false;
+    }
+?>
 
 <!DOCTYPE html>
 
@@ -51,9 +56,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Acceuil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="annonces.php">Annonces</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="favoris.php">Favoris</a>
                     </li>
@@ -63,9 +66,24 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto" id="list_menu_dte">
-                        <li class="nav-item active">
+                        <?php 
+                            if ($_SESSION['authOK']) {                                
+                        ?>
+                        <li class="nav-item">
+                            <a href="monCompte.php" class="nav-link mr-sm-2"><?php echo $_SESSION['login'] ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="deconnexion.php" class="nav-link my-2 my-sm-0">Deconnexion</a>
+                        </li>
+                        <?php 
+                            } else {                                
+                        ?>
+                        <li class="nav-item">
                             <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
                         </li>
+                        <?php
+                            }
+                        ?>
                         <li class="nav-item">
                             <a href="panier.php" class="nav-link my-2 my-sm-0">Pannier</a>
                         </li>

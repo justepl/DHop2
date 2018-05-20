@@ -16,6 +16,7 @@
     $marqueVelo = $_POST['marqueVelo'];
     $modelVelo = $_POST['modelVelo'];
     $description = $_POST['description'];
+    $prix = $_POST['prix'];
     $upload_dir = '../img';
     
     
@@ -40,13 +41,14 @@
     
     $adresseImage = "$upload_dir/$nom.$extension_upload";
     
-    $req = $bd->prepare('INSERT INTO annonce(nom_annonce, marque_velo, model_velo, description, imageVelo) VALUES(:nom_annonce, :marque_velo, :model_velo, :description, :imageVelo)');
+    $req = $bd->prepare('INSERT INTO annonce(nom_annonce, marque_velo, model_velo, description, imageVelo, prix) VALUES(:nom_annonce, :marque_velo, :model_velo, :description, :imageVelo, :prix)');
     $req->execute(array(
         'nom_annonce' => $nomAnnonce,
         'marque_velo' => $marqueVelo,
         'model_velo' => $modelVelo,
         'description' => $description,
-        'imageVelo' => $adresseImage
+        'imageVelo' => $adresseImage,
+        'prix' => $prix
     ));
 
     header('Location: index.php');

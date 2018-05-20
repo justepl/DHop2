@@ -58,8 +58,24 @@ nav {
     text-decoration: none;
 }
 
+#blockAnnonce_Pindex {
+    background-color: white;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    padding-bottom: 10px;
+    box-shadow: 10px 5px 5px black;
+}
+
 #blockAnnonce:hover {
     background-color: rgba(255, 99, 59, 0.2);
+    
+    #nom_annonce, #prix_velo {
+        color: orange;
+    }
+    
+    #marque_velo, #model_velo {
+        color: white;
+    }
 }
 
 aside {
@@ -88,7 +104,8 @@ aside {
     margin-left: 0;
 }
 
-#corpSite {
+#corpSite_Pindex {
+    background-color: $bleuFlash;
     margin-top: 70px;
 }
 
@@ -102,6 +119,8 @@ aside {
 
 #imgVelo {
     display: block;
+    padding-top: 10%;
+    padding-bottom: 00%;
     width: 100%;
     height: auto;
 }
@@ -144,4 +163,124 @@ aside {
 
 #img_form_inscription {
     margin-left: 20px;
+}
+
+#prix_velo {
+    color: $bleuFlash;
+    font-size: 30px;
+}
+
+#div_img_velo {
+    
+}
+
+#corpPage_Pannonce {    
+    padding-top: 50px;
+    margin-bottom: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+#nom_annonce_Pannonce {
+    color: $bleuFlash;
+    font-weight: 600;
+    font-size: 50px;
+}
+
+#imgVelo_Pannonce {
+    margin-left: 15%;
+    padding: 10px;
+    display: block;
+    width: 70%;
+    max-width: 70%;
+    height: auto;
+}
+#btn_ajouter_fav_Pannonce {
+    float: right;
+    margin-top: 20%;
+}
+
+#marque_velo_Pannonce {
+    
+}
+
+#annoncePage p {
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.partieDroite {
+   float: right;
+}
+
+.partieGauche {
+    text-align: left;
+}
+
+
+#marque_Pannonce {
+    margin-bottom: 20px;
+    float: left;
+}
+
+#model_Pannonce {
+    margin-bottom: 20px;
+    float: right;
+}
+
+#body_Pindex {
+    background-color: $bleuFlash;
+}
+
+#div_marque_model_Pannonce {
+    margin-left: 15%;
+    padding: 10px;
+    font-size: 20px;
+    color: dimgray;
+    
+    p {
+        color: #000000;
+        font-weight: 700;
+        font-size: 25px;
+    }
+    
+}
+
+
+
+#titre_description_Pannonce {   
+        margin-left: 10%;
+        color: #000000;
+        font-weight: 700;
+        font-size: 25px;    
+}
+
+#description_Pannonce {
+    margin-left: 15%;
+    padding: 10px;
+    font-size: 20px;
+    color: dimgray;
+}
+
+#annoncePage_Pannonce {
+    padding-top: 50px;
+    background-color: white;
+    box-shadow: 10px 5px 5px black;
+    padding-bottom: 20px;
+}
+
+#body_Pannonce {
+    background-color: $bleuFlash;
+}
+
+#description_velo_Pannonce {
+    padding-top: 20px;
+}
+
+#date_ajout_Pannonce {
+    margin-left: 20px;
+}
+
+#body_Pfavoris {
+    background-color: $bleuFlash;
 }

@@ -35,7 +35,7 @@
     ?>
 </head>
 
-<body>
+<body id="body_Pindex">
     <?php
         require 'db.php';
         
@@ -53,9 +53,6 @@
                 <ul class="navbar-nav mr-auto" id="list_menu_gch">
                     <li class="nav-item active">
                         <a class="nav-link" href="index.php">Acceuil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="annonces.php">Annonces</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="favoris.php">Favoris</a>
@@ -92,21 +89,22 @@
             </div>
         </nav>
 
-        <div class="container" id="corpSite">
+        <div class="container" id="corpSite_Pindex">
             <h1 id="titreAnnonce">Les Annonce de DH : </h1>
             <?php
                 while ($donnees = $annonces->fetch())
                 {
                         ?>
                 
-                <a href="annonces.php" id="lienAnnonce">
-                    <div class="row" id="blockAnnonce">
+                <a href="<?php echo"annonces.php?idAnnonce=".$donnees['id_annonce'];?>" id="lienAnnonce">
+                    <div class="row" id="blockAnnonce_Pindex">
                     <!--<div class="row" id="blockAnnonce">-->
-                        <div class="col-lg-3"><?php echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" id="imgVelo">'; ?></div>
+                        <div class="col-lg-3" id="div_img_velo"><?php echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" id="imgVelo">'; ?></div>
                         <aside>
                             <p id="nom_annonce"><?php echo $donnees['nom_annonce']; ?></p>
                             <p id="marque_velo">Marque : <?php echo $donnees['marque_velo']; ?></p>
                             <p id="model_velo">Model : <?php echo $donnees['model_velo']; ?></p>
+                            <p id="prix_velo"><?php echo $donnees['prix'];?> €</p>
                         </aside>
                     </div>
                 </a>

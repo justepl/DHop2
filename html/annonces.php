@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
+    } else {
+        $_SESSION['login'] = '';
+        $_SESSION['authOK'] = false;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +36,7 @@
     ?>
 </head>
 
-<body>
+<body id="body_Pannonce">
     <?php
         require 'db.php';
         
@@ -48,9 +54,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Acceuil</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="annonces.php">Annonces</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="favoris.php">Favoris</a>
                     </li>
@@ -60,9 +64,24 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto" id="list_menu_dte">
+                        <?php 
+                            if ($_SESSION['authOK']) {                                
+                        ?>
+                        <li class="nav-item">
+                            <a href="monCompte.php" class="nav-link mr-sm-2"><?php echo $_SESSION['login'] ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="deconnexion.php" class="nav-link my-2 my-sm-0">Deconnexion</a>
+                        </li>
+                        <?php 
+                            } else {                                
+                        ?>
                         <li class="nav-item">
                             <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
                         </li>
+                        <?php
+                            }
+                        ?>
                         <li class="nav-item">
                             <a href="panier.php" class="nav-link my-2 my-sm-0">Pannier</a>
                         </li>
@@ -71,36 +90,44 @@
             </div>
         </nav>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Connexion</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="connexion.php">
-                            <div class="form-group">
-                                <label for="identifiant">Identifiant :</label>
-                                <input class="form-control" type="text" name="identifiant" id="identifiant" placeholder="email" autofocus>
+    
+    <div id="corpPage_Pannonce">
+        <?php
+            if(isset($_GET['idAnnonce'])) {
+                $reponse = $bd->query("SELECT * FROM annonce WHERE id_annonce =". $_GET['idAnnonce']);
+                while ($donnees = $reponse->fetch())
+                {
+                    ?>
+                    
+                    <div class="container" id="annoncePage_Pannonce">
+                        <h2 id="nom_annonce_Pannonce"><?php echo $donnees['nom_annonce']; ?> </h2>
+                        <a href="<?php echo"ajoutFavoris.php?idAnnonce=".$_GET['idAnnonce'];?>" class="btn btn-primary" id="btn_ajouter_fav_Pannonce">Ajouter au favoris</a>
+                        <?php 
+                        echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" class="img-fluid" id="imgVelo_Pannonce">';                    
+                        ?>
+                        <div class="container-fluid" id="div_marque_model_Pannonce">
+                            <div class="col-md-6" id="marque_Pannonce">
+                                <p>Marque</p>
+                                <?php
+                                    echo $donnees['marque_velo'];    
+                                ?>
                             </div>
-                            <div class="form-group">
-                                <label for="password">Mot de passe :</label>
-                                <input class="form-control" type="password" id="password" name="password" placeholder="password">
-                                <br>
-                                <input type="submit" name="submit" value="Connexion">
+                            <div class="col-md-6" id="model_Pannonce">
+                                <p>Model</p>
+                                <?php
+                                    echo $donnees['model_velo'];
+                                ?>
                             </div>
-                        </form>
+                        </div>
+                        <p id="description_velo_Pannonce"><span id="titre_description_Pannonce">Description du velo :</span> <br> <span id="description_Pannonce"><?php echo $donnees['description'];?></span></p>
+                        <p id="date_ajout_Pannonce"> Ajoutée le : <?php echo $donnees['date'];?></p>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <a type="button" class="btn btn-primary" href="inscription.php">S'inscrire</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <?php
+                }
+            }
+        ?>
+    </div>
+        
 </body>
 
 </html>

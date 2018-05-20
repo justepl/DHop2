@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
+    } else {
+        $_SESSION['login'] = '';
+        $_SESSION['authOK'] = false;
+    }
 ?>
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -15,7 +21,7 @@
                 <form method="post" action="connexion_post.php">
                     <div class="form-group">
                         <label for="identifiant">Identifiant :</label>
-                        <input class="form-control" type="text" name="identifiant" id="identifiant" placeholder="email" autofocus>
+                        <input class="form-control" type="text" name="identifiant" id="identifiant" placeholder="identifiant" autofocus>
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de passe :</label>
