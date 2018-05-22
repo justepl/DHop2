@@ -50,7 +50,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto" id="list_menu_gch">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="index.php">Acceuil</a>
                         </li>
                         <li class="nav-item">
@@ -82,13 +82,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto" id="list_menu_gch">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="index.php">Acceuil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="favoris.php" disabled>Favoris</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="deposeAnnonce.php" disabled>Déposer une annonce</a>
                         </li>
                     </ul>
@@ -96,7 +96,7 @@
                         <ul class="navbar-nav mr-auto" id="list_menu_dte">
                             
                             <li class="nav-item">
-                                <a href="monCompte.php" class="nav-link mr-sm-2">
+                                <a href="<?php echo" monCompte.php?idVendeur=".$_SESSION['id_vendeur'];?>" class="nav-link mr-sm-2">
                                     <?php echo $_SESSION['identifiant'] ?>
                                 </a>
                             </li>

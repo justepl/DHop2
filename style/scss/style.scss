@@ -59,6 +59,14 @@ nav {
     
 }
 
+#searchBar {
+    input {
+       margin-left: 50%;
+    }
+    
+   
+}
+
 ///////////////////////////////////////////////////// modal.php ////////////////////////////////////////
 #modal_header {
     background-color: $bleuFlash;
@@ -287,6 +295,11 @@ aside {
 
 #body_Pfavoris {
     background-color: white;
+}
+
+#corpSite_Pfavoris {
+    padding-top: 70px;
+    font-family: sans-serif;
 }
 
 

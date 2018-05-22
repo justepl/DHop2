@@ -106,8 +106,9 @@
                             'password' => $password,
                             'sexe' => $sexe,
                             'telephone' => $_POST['tel']
-                                header('Location : index.php');
-                            ));  
+                                
+                            )); 
+                            header('Location : index.php');
                         } else{
                             $message = "ce pseudo est déjà utilisé";
                         }                    

@@ -24,6 +24,9 @@ nav {
 #prix_velo {
   font-size: 30px; }
 
+#searchBar input {
+  margin-left: 50%; }
+
 #modal_header {
   background-color: #109AF5; }
 
@@ -184,5 +187,9 @@ aside {
 
 #body_Pfavoris {
   background-color: white; }
+
+#corpSite_Pfavoris {
+  padding-top: 70px;
+  font-family: sans-serif; }
 
 /*# sourceMappingURL=style.css.map */

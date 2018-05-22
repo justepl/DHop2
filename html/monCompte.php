@@ -3,7 +3,7 @@
 
     if(empty($_SESSION['connect'])) {
         $_SESSION['connect'] = 0;
-        //$_SESSION['identifiant'] = '';
+        $_SESSION['identifiant'] = '';
     }
 ?>
 
@@ -39,7 +39,7 @@
         require 'db.php';
         
         $membres = $bd->query('SELECT * FROM membre');
-        $annonces = $bd->query('SELECT * FROM annonce');
+        $annonces = $bd->query('SELECT * FROM annonce WHERE id_vendeur='.$_GET['idVendeur']);
       
             if ($_SESSION['connect'] == 0) {                                
             ?>
@@ -67,7 +67,7 @@
                             <li class="nav-item">
                                 <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
                             </li>
-
+                            
                         </ul>
                     </div>
                 </div>
@@ -96,59 +96,55 @@
                     </ul>
                     <div class="form-inline my-2 my-lg-0">
                         <ul class="navbar-nav mr-auto" id="list_menu_dte">
-
+                            
                             <li class="nav-item">
-                                <a href="<?php echo" monCompte.php?idVendeur=".$_SESSION['id_vendeur'];?>" class="nav-link mr-sm-2">
+                                <a href="monCompte.php" class="nav-link mr-sm-2">
                                     <?php echo $_SESSION['identifiant'] ?>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="deconnexion.php" class="nav-link my-2 my-sm-0">Deconnexion</a>
                             </li>
-
+                            
 
                         </ul>
                     </div>
                 </div>
             </nav>
-            <?php
-                            
+        <?php
                                             }
                                         ?>
-
-                <div class="container" id="corpSite_Pindex">
-                    <h1 id="titreAnnonce">Les Annonces de DH : </h1>
-                    <?php
-                    
+        
+        
+        <div class="container" id="corpSite_Pindex">
+                <h1 id="titreAnnonce">Mes Annonces : </h1>
+                <?php
                 while ($donnees = $annonces->fetch())
                 {
                         ?>
 
-                        <a href="<?php echo" annonces.php?idAnnonce=".$donnees['id_annonce'];?>" id="lienAnnonce">
-                            <div class="row" id="blockAnnonce_Pindex">
-                                <!--<div class="row" id="blockAnnonce">-->
-                                <div class="col-lg-3" id="div_img_velo">
-                                    <?php echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" id="imgVelo">'; ?></div>
-                                <aside>
-                                    <p id="nom_annonce">
-                                        <?php echo $donnees['nom_annonce']; ?>
-                                    </p>
-                                    <p id="marque_velo">Marque :
-                                        <?php echo $donnees['marque_velo']; ?>
-                                    </p>
-                                    <p id="model_velo">Modéle :
-                                        <?php echo $donnees['model_velo']; ?>
-                                    </p>
-                                    <p id="prix_velo">
-                                        <?php echo $donnees['prix'];?> €</p>
-                                </aside>
-                            </div>
-                        </a>
-                        <?php
+                    <a href="<?php echo" annonces.php?idAnnonce=".$donnees['id_annonce'];?>" id="lienAnnonce">
+                        <div class="row" id="blockAnnonce_Pindex">
+                            <!--<div class="row" id="blockAnnonce">-->
+                            <div class="col-lg-3" id="div_img_velo">
+                                <?php echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" id="imgVelo">'; ?></div>
+                            <aside>
+                                <p id="nom_annonce">
+                                    <?php echo $donnees['nom_annonce']; ?>
+                                </p>
+                                <p id="marque_velo">Marque :
+                                    <?php echo $donnees['marque_velo']; ?>
+                                </p>
+                                <p id="model_velo">Modéle :
+                                    <?php echo $donnees['model_velo']; ?>
+                                </p>
+                                <p id="prix_velo">
+                                    <?php echo $donnees['prix'];?> €</p>
+                            </aside>
+                        </div>
+                    </a>
+                    <?php
                     }
             ?>
 
-                </div>
-    </body>
-
-    </html>
+            </div>
