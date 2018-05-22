@@ -1,10 +1,8 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
-    } else {
-        $_SESSION['login'] = '';
-        $_SESSION['authOK'] = false;
+    if(empty($_SESSION['connect'])) {
+        $_SESSION['connect'] = 0;
     }
 ?>
 

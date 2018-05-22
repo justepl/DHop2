@@ -1,10 +1,9 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
-    } else {
-        $_SESSION['login'] = '';
-        $_SESSION['authOK'] = false;
+    if(empty($_SESSION['connect'])) {
+        $_SESSION['connect'] = 0;
+        $_SESSION['identifiant'] = '';
     }
 ?>
 
@@ -40,73 +39,94 @@
         <?php
         require 'db.php';
         
-    
-        
-        
-      ?>
-            <nav  class="navbar fixed-top navbar-expand-lg navbar-light" id="navbar">
+    if ($_SESSION['connect'] == 0) {                                
+            ?>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="navbar">
                 <a class="navbar-brand" href="index.php" id="logo">DHop</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto" id="list_menu_gch">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Acceuil</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link active" href="favoris.php">Favoris</a>
+                            <btn class="nav-link" isabled="disabled">Favoris</btn>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="deposeAnnonce.php">Deposer une annonce</a>
+                            <btn class="nav-link" disabled="disabled">Déposer une annonce</btn>
                         </li>
                     </ul>
                     <div class="form-inline my-2 my-lg-0">
                         <ul class="navbar-nav mr-auto" id="list_menu_dte">
-                            <?php 
-                            if ($_SESSION['authOK']) {                                
+                            <li class="nav-item">
+                                <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <?php 
+                            } else {                                
                         ?>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="navbar">
+                <a class="navbar-brand" href="index.php" id="logo">DHop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto" id="list_menu_gch">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Acceuil</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="favoris.php" disabled>Favoris</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="deposeAnnonce.php" disabled>Déposer une annonce</a>
+                        </li>
+                    </ul>
+                    <div class="form-inline my-2 my-lg-0">
+                        <ul class="navbar-nav mr-auto" id="list_menu_dte">
+                            
                             <li class="nav-item">
                                 <a href="monCompte.php" class="nav-link mr-sm-2">
-                                    <?php echo $_SESSION['login'] ?>
+                                    <?php echo $_SESSION['identifiant'] ?>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="deconnexion.php" class="nav-link my-2 my-sm-0">Deconnexion</a>
                             </li>
-                            <?php 
-                            } else {                                
-                        ?>
-                            <li class="nav-item">
-                                <a href="connexion.php" class="nav-link mr-sm-2" data-toggle="modal" data-target="#exampleModalCenter">Connexion</a>
-                            </li>
-                            <?php
-                            }
-                        ?>
-                                <li class="nav-item">
-                                    <a href="panier.php" class="nav-link my-2 my-sm-0">Pannier</a>
-                                </li>
+                            
+
                         </ul>
                     </div>
                 </div>
             </nav>
+        <?php
+                                            }
+                                        ?>
+
 
             <div class="container" id="corpSite_Pindex">
-                <h1 id="titreAnnonce">Les Annonce Favoris : </h1>
+                <h1 id="titreAnnonce">Les Annonces Favoris : </h1>
                 <?php
                 
                 
-                $reponse = $bd->query('SELECT * FROM membre WHERE pseudo=\''.$_SESSION['login'].'\'');
-                $id_membre;
+                $reponse = $bd->query('SELECT * FROM membre WHERE pseudo=\''.$_SESSION['identifiant'].'\'');
                 $id_annonce;
                 while ($donnees = $reponse->fetch()){
 
                     $id_membre = $donnees['id'];
                 }
 
-                $login = $_SESSION['login'];
+                $login = $_SESSION['identifiant'];
                 
                 
                 $annonces_fav = $bd->query("SELECT * FROM favoris WHERE id_user=".$id_membre);

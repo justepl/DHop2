@@ -1,15 +1,14 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
-    } else {
-        $_SESSION['login'] = '';
-        $_SESSION['authOK'] = false;
+    if(empty($_SESSION['connect'])) {
+        $_SESSION['connect'] = 0;
+        $_SESSION['identifiant'] = '';
     }
 
  require 'db.php';
 
-$reponse = $bd->query('SELECT * FROM membre WHERE pseudo=\''.$_SESSION['login'].'\'');
+$reponse = $bd->query('SELECT * FROM membre WHERE pseudo=\''.$_SESSION['identifiant'].'\'');
 $id_membre;
 $id_annonce;
 while ($donnees = $reponse->fetch()){

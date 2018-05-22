@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +22,7 @@
     $description = $_POST['description'];
     $prix = $_POST['prix'];
     $upload_dir = '../img';
-    
+    $id_vendeur = $_SESSION['id_vendeur'];
     
         
     if(isset($_FILES['imageVelo']) AND $_FILES['imageVelo']['error'] == 0)
@@ -33,6 +37,7 @@
             // stocker le fichier
            move_uploaded_file($_FILES['imageVelo']['tmp_name'], "$upload_dir/$nom.$extension_upload");
             echo"l'envoie à bien été effectué";
+            
         }
     }
     else {
@@ -41,14 +46,15 @@
     
     $adresseImage = "$upload_dir/$nom.$extension_upload";
     
-    $req = $bd->prepare('INSERT INTO annonce(nom_annonce, marque_velo, model_velo, description, imageVelo, prix) VALUES(:nom_annonce, :marque_velo, :model_velo, :description, :imageVelo, :prix)');
+    $req = $bd->prepare('INSERT INTO annonce(nom_annonce, marque_velo, model_velo, description, imageVelo, prix, id_vendeur) VALUES(:nom_annonce, :marque_velo, :model_velo, :description, :imageVelo, :prix, :id_vendeur )');
     $req->execute(array(
         'nom_annonce' => $nomAnnonce,
         'marque_velo' => $marqueVelo,
         'model_velo' => $modelVelo,
         'description' => $description,
         'imageVelo' => $adresseImage,
-        'prix' => $prix
+        'prix' => $prix,
+        'id_vendeur' => $_SESSION['id_vendeur']
     ));
 
     header('Location: index.php');

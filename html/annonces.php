@@ -1,10 +1,8 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
-    } else {
-        $_SESSION['login'] = '';
-        $_SESSION['authOK'] = false;
+    if(empty($_SESSION['connect'])) {
+        $_SESSION['connect'] = 0;
     }
 ?>
 
@@ -65,10 +63,10 @@
                 <div class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto" id="list_menu_dte">
                         <?php 
-                            if ($_SESSION['authOK']) {                                
+                            if ($_SESSION['connect'] == 1) {                                
                         ?>
                         <li class="nav-item">
-                            <a href="monCompte.php" class="nav-link mr-sm-2"><?php echo $_SESSION['login'] ?></a>
+                            <a href="monCompte.php" class="nav-link mr-sm-2"><?php echo $_SESSION['identifiant'] ?></a>
                         </li>
                         <li class="nav-item">
                             <a href="deconnexion.php" class="nav-link my-2 my-sm-0">Deconnexion</a>
@@ -94,14 +92,18 @@
     <div id="corpPage_Pannonce">
         <?php
             if(isset($_GET['idAnnonce'])) {
-                $reponse = $bd->query("SELECT * FROM annonce WHERE id_annonce =". $_GET['idAnnonce']);
-                while ($donnees = $reponse->fetch())
+                $reponse_annonces = $bd->query("SELECT * FROM annonce WHERE id_annonce =". $_GET['idAnnonce']);
+                
+                while ($donnees = $reponse_annonces->fetch())
                 {
+                    $reponse_membre = $bd->query("SELECT * FROM membre WHERE id =".(int)$donnees['id_vendeur']);
+                    while ($donnees_membre = $reponse_membre->fetch())
+                    {
                     ?>
                     
                     <div class="container" id="annoncePage_Pannonce">
                         <h2 id="nom_annonce_Pannonce"><?php echo $donnees['nom_annonce']; ?> </h2>
-                        <a href="<?php echo"ajoutFavoris.php?idAnnonce=".$_GET['idAnnonce'];?>" class="btn btn-primary" id="btn_ajouter_fav_Pannonce">Ajouter au favoris</a>
+                        
                         <?php 
                         echo'<img src="'.$donnees['imageVelo'].'" alt="image de l\'annonce" class="img-fluid" id="imgVelo_Pannonce">';                    
                         ?>
@@ -113,16 +115,46 @@
                                 ?>
                             </div>
                             <div class="col-md-6" id="model_Pannonce">
-                                <p>Model</p>
+                                <p>Modéle</p>
                                 <?php
                                     echo $donnees['model_velo'];
                                 ?>
                             </div>
                         </div>
                         <p id="description_velo_Pannonce"><span id="titre_description_Pannonce">Description du velo :</span> <br> <span id="description_Pannonce"><?php echo $donnees['description'];?></span></p>
-                        <p id="date_ajout_Pannonce"> Ajoutée le : <?php echo $donnees['date'];?></p>
+                        
+                        <div class="container-fluid">
+                            <div class="col-md-3" id="btn_add_Fav_Pannonce">
+                                <a href="<?php echo"ajoutFavoris.php?idAnnonce=".$_GET['idAnnonce'];?>" class="btn btn-primary" id="btn_ajouter_fav_Pannonce">Ajouter aux favoris</a>
+                            </div>
+                            <div class="col-md-3" id="btn_coordonnes_Pannonce">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Coordonées vendeur</button>
+                            </div>
+                        </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Coordonnées du vendeur :</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      téléphone : <a href="tel<?php $donnees_membre['telephone']?>"> <?php echo $donnees_membre['telephone'];?></a> <br>
+                                      adresse mail : <a href="mailto:<?php $donnees_membre['mail']?>"> <?php echo $donnees_membre['mail'];?></a>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        
+                        <p id="date_ajout_Pannonce"> Ajoutée le : <?php echo $donnees['date'];?> <br>par : <?php echo $donnees_membre['pseudo']?></p>
                     </div>
                     <?php
+                    }
                 }
             }
         ?>

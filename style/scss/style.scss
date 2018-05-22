@@ -1,10 +1,11 @@
-// variables 
+///////////////////////////////////////////////////////////////// variables //////////////////////////////////////////
 $bleuFlash: #109AF5;
 $bleuFade: #01406C;
 $orange: #F45A2B;
 $grisClair: #647B96;
+$grisFond : #858585;
 
-// General :
+/////////////////////////////////////////////////////////////// General.php /////////////////////////////////////////
 body::-webkit-scrollbar {
 
     display: none;
@@ -16,9 +17,9 @@ body::-webkit-scrollbar {
     }
 }
 
-// Nav :
+////////////////////////////////////////////////////////////// NavBar ////////////////////////////////////////////////
 nav {
-    background-color: $bleuFlash;
+    background-color: dimgray;
     font-family: 'Skranji', cursive;
 
     #logo {
@@ -26,29 +27,45 @@ nav {
     }
 
     #logo:hover {
-        color: $orange;
+        color: white;
     }
 
     #list_menu_gch {
         padding-left: 20px;
+        color: white;
         a:hover {
-            color: $orange;
+            color: white;
         }
     }
 
     #list_menu_dte {
+        color: white;
         a:hover {
-            color: $orange;
+            color: white;
         }
     }
 }
 
-// modal :
+#divForm {
+    margin-left: 0;
+}
+
+#prix_velo {
+    //color: $vertFond;
+    font-size: 30px;
+}
+
+#div_img_velo {
+    
+}
+
+///////////////////////////////////////////////////// modal.php ////////////////////////////////////////
 #modal_header {
     background-color: $bleuFlash;
 }
 
 
+////////////////////////////////////////////////// index.php ////////////////////////////////////////////
 // annonces :
 #titreAnnonce {
     margin-bottom: 20px;
@@ -59,22 +76,26 @@ nav {
 }
 
 #blockAnnonce_Pindex {
-    background-color: white;
+    color: black;
+    border-radius: 5px;
+    background-color: $grisFond;
     margin-top: 1%;
     margin-bottom: 2%;
     padding-bottom: 10px;
     box-shadow: 10px 5px 5px black;
 }
 
-#blockAnnonce:hover {
-    background-color: rgba(255, 99, 59, 0.2);
-    
+#blockAnnonce_Pindex:hover {
+    //background-color: rgba(255, 99, 59, 0.2);
+    transform: scale(1.05);
+    box-shadow: 20px 10px 5px black;
     #nom_annonce, #prix_velo {
-        color: orange;
+        color: black;
+        font-weight: 700;
     }
     
     #marque_velo, #model_velo {
-        color: white;
+        color: black;
     }
 }
 
@@ -82,32 +103,36 @@ aside {
     margin-left: 20%;
 
     #nom_annonce {
-        color: $bleuFlash;
+        //color: $vertFond;
         font-size: 30px;
     }
 
     #marque_velo {
-        color: $grisClair;
+        color: black;
     }
 
     #model_velo {
-        color: $grisClair;
+        color: black;
     }
 }
 
-
-// deposer annonce :
-#submit {}
-
-//reste
-#divForm {
-    margin-left: 0;
-}
-
 #corpSite_Pindex {
-    background-color: $bleuFlash;
+    background-color: white;
     margin-top: 70px;
 }
+
+#body_Pindex {
+    background-color: white;
+}
+
+///////////////////////////////////////////////////////// deposerAnnonce.php ///////////////////////////////////////////////////////
+
+#container_form_ajoutAnnonce {
+    padding-top: 100px;
+}
+
+
+//////////////////////////////////////////////////////// Annonces.php ///////////////////////////////////////////////////////////////
 
 #blockAnnonce {
     border-bottom: 1px solid gray;
@@ -115,6 +140,7 @@ aside {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
+    background-color: $grisFond;
 }
 
 #imgVelo {
@@ -125,56 +151,8 @@ aside {
     height: auto;
 }
 
-
-
-#imageVelo {}
-
-#btnFichier {}
-
-#container_form_ajoutAnnonce {
-    padding-top: 100px;
-}
-
-
-#img_div_form_inscription {
-    margin-top: -20px;
-    padding: 0;
-    height: 100%;
-    width: auto;
-    float: right;
-}
-
-
-#img_inscription {
-   float: right;
-}
-
-#inscription {
-    overflow-x: hidden;
-}
-
-#error_message {
-    float: left;
-    margin-top: 90px;
-    text-align: center;
-}
-
-
-
-#img_form_inscription {
-    margin-left: 20px;
-}
-
-#prix_velo {
-    color: $bleuFlash;
-    font-size: 30px;
-}
-
-#div_img_velo {
-    
-}
-
 #corpPage_Pannonce {    
+    background-color: $grisFond;
     padding-top: 50px;
     margin-bottom: 20px;
     padding: 0;
@@ -182,7 +160,7 @@ aside {
 }
 
 #nom_annonce_Pannonce {
-    color: $bleuFlash;
+    //color: $vertFond;
     font-weight: 600;
     font-size: 50px;
 }
@@ -195,10 +173,7 @@ aside {
     max-width: 70%;
     height: auto;
 }
-#btn_ajouter_fav_Pannonce {
-    float: right;
-    margin-top: 20%;
-}
+
 
 #marque_velo_Pannonce {
     
@@ -209,15 +184,6 @@ aside {
     font-size: 20px;
 }
 
-.partieDroite {
-   float: right;
-}
-
-.partieGauche {
-    text-align: left;
-}
-
-
 #marque_Pannonce {
     margin-bottom: 20px;
     float: left;
@@ -226,10 +192,6 @@ aside {
 #model_Pannonce {
     margin-bottom: 20px;
     float: right;
-}
-
-#body_Pindex {
-    background-color: $bleuFlash;
 }
 
 #div_marque_model_Pannonce {
@@ -263,14 +225,14 @@ aside {
 }
 
 #annoncePage_Pannonce {
-    padding-top: 50px;
+    padding-top: 80px;
     background-color: white;
     box-shadow: 10px 5px 5px black;
     padding-bottom: 20px;
 }
 
 #body_Pannonce {
-    background-color: $bleuFlash;
+    background-color: white;
 }
 
 #description_velo_Pannonce {
@@ -281,6 +243,51 @@ aside {
     margin-left: 20px;
 }
 
-#body_Pfavoris {
-    background-color: $bleuFlash;
+#btn_add_Fav_Pannonce {
+    float: right;
+    margin-right: 25%;
 }
+
+#btn_coordonnes_Pannonce {
+    float: left;
+    margin-left: 25%;
+}
+
+/////////////////////////////////////////////////////////// Inscription.php ///////////////////////////////////
+
+#img_div_form_inscription {
+    margin-top: -20px;
+    padding: 0;
+    height: 100%;
+    width: auto;
+    float: right;
+}
+
+
+#img_inscription {
+   float: right;
+}
+
+#inscription {
+    overflow-x: hidden;
+}
+
+#error_message {
+    float: left;
+    margin-top: 90px;
+    text-align: center;
+}
+
+#img_form_inscription {
+    margin-left: 20px;
+}
+
+
+////////////////////////////////////////////////////////// Favoris.php ///////////////////////////////////////////////////
+
+#body_Pfavoris {
+    background-color: white;
+}
+
+
+

@@ -97,14 +97,16 @@
                         $count = $req->rowCount(); // verifie que le pseudo est disponnible
                         if($count == 0) {
 
-                            $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe)');
+                            $req = $bd->prepare('INSERT INTO membre(pseudo, nom, prenom, mail, password, sexe, telephone) VALUES(:pseudo, :nom, :prenom, :mail, :password, :sexe, :telephone)');
                             $req->execute(array(
                             'pseudo' => $pseudo,
                             'nom' => $nom,
                             'prenom' => $prenom,
                             'mail' => $email,
                             'password' => $password,
-                            'sexe' => $sexe
+                            'sexe' => $sexe,
+                            'telephone' => $_POST['tel']
+                                header('Location : index.php');
                             ));  
                         } else{
                             $message = "ce pseudo est déjà utilisé";
@@ -123,7 +125,15 @@
        //header('Location: index.php');
             ?>
             <div class="alert alert-danger col-md-6" id="error_message">
+                <?php
+                if(empty($message))
+                {}
+                else {
+                ?>
                 <?= $message; ?>
+                <?php
+                }
+                ?>
             </div>
         
         
@@ -153,6 +163,10 @@
                         <div class="form-group">
                             <label for="email">Adresse mail :</label>
                             <input class="form-control" type="text" id="email" name="email" placeholder="votre adresse mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input class="form-control" type="text" id="tel" name="tel" placeholder="Votre numeros de téléphone">
                         </div>
                         <div class="form-group">
                             <label for="password1">Mot de passe :</label>
